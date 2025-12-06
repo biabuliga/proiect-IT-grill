@@ -1,5 +1,4 @@
 # Pimp Your Grill 🔥
-
 Cea mai mare rețea de grătăragii din lume!
 
 ## Structura Proiectului
