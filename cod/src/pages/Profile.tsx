@@ -3,7 +3,8 @@ import { Link, Navigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/AuthContext";
-import { Plus } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { Plus, Trash2, Edit2 } from "lucide-react";
 import grillIcon from "@/assets/grill-icon.png";
 
 // BBQ Icons
@@ -27,6 +28,7 @@ interface Grill {
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth();
+  const { toast } = useToast();
   const [userGrills, setUserGrills] = useState<Grill[]>([]);
 
   // Încărcăm grătarele utilizatorului din localStorage
@@ -37,6 +39,20 @@ const Profile = () => {
       setUserGrills(filteredGrills);
     }
   }, [user]);
+
+  const handleDeleteGrill = (grillId: string) => {
+    if (confirm("Ești sigur că vrei să ștergi acest grătar?")) {
+      const allGrills = JSON.parse(localStorage.getItem('grills') || '[]');
+      const updatedGrills = allGrills.filter((grill: Grill) => grill.id !== grillId);
+      localStorage.setItem('grills', JSON.stringify(updatedGrills));
+      setUserGrills(userGrills.filter(g => g.id !== grillId));
+      
+      toast({
+        title: "Succes",
+        description: "Grătarul a fost șters cu succes.",
+      });
+    }
+  };
 
   // Dacă utilizatorul nu e autentificat, redirecționăm la login
   if (!isAuthenticated || !user) {
@@ -116,10 +132,27 @@ const Profile = () => {
                   className="bg-gray-200 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
                 >
                   {/* Card Header */}
-                  <div className="bg-gray-300 px-4 py-3">
+                  <div className="bg-gray-300 px-4 py-3 flex justify-between items-center">
                     <p className="text-foreground font-semibold">
                       Pimp: <span className="text-primary">{grill.author}</span>
                     </p>
+                    <div className="flex gap-2">
+                      <Link to={`/edit-grill/${grill.id}`}>
+                        <button
+                          className="text-blue-600 hover:text-blue-800 transition-colors p-1"
+                          title="Editează grătarul"
+                        >
+                          <Edit2 className="h-5 w-5" />
+                        </button>
+                      </Link>
+                      <button
+                        onClick={() => handleDeleteGrill(grill.id)}
+                        className="text-red-600 hover:text-red-800 transition-colors p-1"
+                        title="Șterge grătarul"
+                      >
+                        <Trash2 className="h-5 w-5" />
+                      </button>
+                    </div>
                   </div>
                   
                   {/* Grill Image */}

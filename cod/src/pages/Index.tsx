@@ -81,7 +81,7 @@ const Index = () => {
           <p className="text-lg md:text-xl text-primary-foreground text-center font-medium">
             {isAuthenticated ? (
               <>
-                Bine ai revenit, mare grătăragiu!
+                Bine ai revenit, mare grătaragiu!
                 <br className="hidden md:block" />
                 {" "}Explorează cele mai bune grătare din comunitate!
               </>

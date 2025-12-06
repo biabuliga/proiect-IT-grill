@@ -196,6 +196,16 @@ const BestGrills = () => {
     .slice(0, 3);
 
   const handleLike = (id: string) => {
+    // Verificăm dacă utilizatorul este autentificat
+    if (!user || !user.id) {
+      toast({
+        title: "Trebuie să fii logat",
+        description: "Te rugăm să te conectezi pentru a putea vota!",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setLikedGrills((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(id)) {

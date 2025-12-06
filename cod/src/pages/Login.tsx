@@ -32,7 +32,7 @@ const Login = () => {
     if (success) {
       toast({
         title: "Autentificare reușită!",
-        description: "Bine ai revenit, grătăragiu!",
+        description: "Bine ai revenit, grătaragiu!",
       });
       navigate("/profile");
     } else {
@@ -66,7 +66,7 @@ const Login = () => {
           <h1 className="font-chewy text-2xl md:text-3xl text-primary-foreground text-center mb-8">
             Bine ai revenit
             <br />
-            mare grătăragiu!
+            mare grătaragiu!
           </h1>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -105,9 +105,12 @@ const Login = () => {
           </form>
 
           <div className="text-center mt-6 space-y-3">
-            <button className="text-primary-foreground/80 hover:text-primary-foreground text-sm underline">
+            <Link
+              to="/forgot-password"
+              className="block text-primary-foreground/80 hover:text-primary-foreground text-sm underline"
+            >
               Forgot password
-            </button>
+            </Link>
             
             <p className="text-primary-foreground/80 text-sm">
               No account? Press here to{" "}

@@ -13,6 +13,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<boolean>;
   register: (name: string, email: string, phone: string, password: string) => Promise<boolean>;
   logout: () => void;
+  resetPassword: (email: string, newPassword?: string) => Promise<boolean>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -89,8 +90,27 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     localStorage.removeItem("user");
   };
 
+  const resetPassword = async (email: string, newPassword?: string): Promise<boolean> => {
+    const savedUsers = JSON.parse(localStorage.getItem("users") || "[]");
+    const userIndex = savedUsers.findIndex((u: User) => u.email === email);
+
+    if (userIndex === -1) {
+      return false;
+    }
+
+    // Dacă se trimite o parolă nouă, o actualizam
+    if (newPassword) {
+      savedUsers[userIndex].password = newPassword;
+      localStorage.setItem("users", JSON.stringify(savedUsers));
+      return true;
+    }
+
+    // Doar verificăm dacă email-ul există
+    return true;
+  };
+
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated: !!user, login, register, logout }}>
+    <AuthContext.Provider value={{ user, isAuthenticated: !!user, login, register, logout, resetPassword }}>
       {children}
     </AuthContext.Provider>
   );

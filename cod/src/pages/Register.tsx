@@ -29,8 +29,40 @@ const Register = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const validatePhoneNumber = (phone: string): boolean => {
+    // Scoatem spațiile din numărul de telefon
+    const cleanedPhone = phone.replace(/\s/g, "");
+    // Verificăm dacă începe cu 07 și are exact 10 cifre
+    return /^07\d{8}$/.test(cleanedPhone);
+  };
+
+  const validateEmail = (email: string): boolean => {
+    // Verificăm dacă email-ul se termină cu .com sau .ro
+    return /^[^\s@]+@[^\s@]+\.(com|ro)$/.test(email);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validare email
+    if (!validateEmail(formData.email)) {
+      toast({
+        title: "Eroare",
+        description: "Email-ul trebuie să se termine cu .com sau .ro!",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validare număr de telefon
+    if (!validatePhoneNumber(formData.phone)) {
+      toast({
+        title: "Eroare",
+        description: "Numărul de telefon trebuie să înceapă cu 07 și să aibă 10 cifre!",
+        variant: "destructive",
+      });
+      return;
+    }
 
     if (formData.password !== formData.confirmPassword) {
       toast({
