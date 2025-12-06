@@ -88,5 +88,5 @@ API-ul va rula pe: http://localhost:3001
 -cum să folosesc Git și GitHub pentru versionarea codului
 -cum să rulez și să testez local o aplicație web
 
-## Autori
-Liga AC - LSAC 2025
+## Autor
+Buliga Bianca-Maria 311AB 
