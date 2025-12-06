@@ -1,5 +1,17 @@
 # Pimp Your Grill 🔥
-Cea mai mare rețea de grătăragii din lume!
+## Rularea aplicatie
+
+-cd frontend
+-npm install
+-npm run dev
+## Tehnologii utilizate
+- React
+- Vite
+- TypeScript
+- HTML & CSS
+- Node.js (pentru rulare locală)
+- Git & GitHub
+  ## Funcționalitățile aplicației
 
 ## Structura Proiectului
 
