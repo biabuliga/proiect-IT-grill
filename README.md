@@ -13,6 +13,19 @@
 - Git & GitHub
   ## Funcționalitățile aplicației
 
+Aplicația include următoarele funcționalități:
+
+- **Homepage** – pagină principală de prezentare a aplicației
+- **Header & Footer** – componente reutilizabile afișate pe toate paginile
+- **Register** – crearea unui cont nou de utilizator
+- **Login** – autentificarea utilizatorilor existenți
+- **Authorization** – acces restricționat la anumite funcționalități pentru utilizatorii autentificați
+- **Profile** – pagină de profil a utilizatorului
+- **Adding new Grill** – adăugarea unui grill nou în aplicație
+- **Leaderboard** – afișarea unui clasament
+- **Liking Posts** – posibilitatea de a aprecia postările
+- **Searching Grills** – căutarea grill-urilor după criterii relevante
+
 ## Structura Proiectului
 
 ```
@@ -31,15 +44,6 @@ proiect-IT-grill/
 │   └── package.json
 │
 └── README.md
-```
-
-## Instalare
-
-### Frontend
-```bash
-cd frontend
-npm install
-npm run dev
 ```
 Aplicația va rula pe: http://localhost:8080
 
@@ -63,7 +67,6 @@ API-ul va rula pe: http://localhost:3001
 | POST | /api/auth/register | Înregistrare utilizator |
 | POST | /api/auth/login | Autentificare |
 
-## Tehnologii Folosite
 
 ### Frontend
 - React 18
@@ -76,6 +79,14 @@ API-ul va rula pe: http://localhost:3001
 - Node.js
 - Express.js
 - CORS
+
+## Ce am invatat
+În cadrul acestui proiect am învățat:
+
+-cum să dezvolt o aplicație frontend folosind React și Vite
+-cum să dau prompturi exacte
+-cum să folosesc Git și GitHub pentru versionarea codului
+-cum să rulez și să testez local o aplicație web
 
 ## Autori
 Liga AC - LSAC 2025
